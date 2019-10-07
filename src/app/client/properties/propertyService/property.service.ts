@@ -9,6 +9,8 @@ const ADD_PROPERTY_PATH = `${environment.BASE_API_PATH}/api/property/create`;
 const EDIT_PROPERTY_PATH = `${environment.BASE_API_PATH}/api/property/update`;
 const DELETE_PROPERTY_PATH = `${environment.BASE_API_PATH}/api/property/delete`;
 
+const ADD_UNIT_PATH = `${environment.BASE_API_PATH}/api/property/:id/unit/create`;
+
 
 export interface Unit {
   number: string;
@@ -56,6 +58,15 @@ export class PropertyService {
     const user = JSON.parse(localStorage.getItem('user'));
     const token = user ? user.token : '';
     return this.http.post<Property>(EDIT_PROPERTY_PATH, property, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
+    });
+  }
+
+  public addUnit(property_id: string, unit: Unit) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user ? user.token : '';
+    const unitPath = ADD_UNIT_PATH.replace(':id', property_id);
+    return this.http.post<Property>(unitPath, {property_id: property_id, unit: unit}, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     });
   }

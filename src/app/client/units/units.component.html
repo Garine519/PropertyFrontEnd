@@ -1,6 +1,13 @@
 <div class="padding">
   <mat-card>
-    <mat-card-title>{{property}} Units</mat-card-title>
+    <mat-card-title>
+      <div fxLayoutFill>
+        <div fxLayoutAlign="start start">{{property?.name}} Units</div>
+        <div fxLayoutAlign="end start">
+          <button mat-flat-button (click)="newUnit()">Add New Unit</button>
+        </div>
+      </div>
+    </mat-card-title>
     <mat-card-content>
       <mat-table #table [dataSource]="units">
         <ng-container matColumnDef="number">

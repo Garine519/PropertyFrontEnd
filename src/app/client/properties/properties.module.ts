@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared.module';
 import { PropertiesComponent} from './properties.component';
 import { PropertyService } from '../properties/propertyService/property.service';
-import { UnitsComponent } from '../units/units.component';
+import { UnitsComponent, UnitDialogComponent } from '../units/units.component';
 import { PropertyDialogComponent } from './properties.component';
 
 const routes: Routes = [
@@ -17,8 +17,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  entryComponents: [PropertyDialogComponent],
-  declarations: [PropertiesComponent, UnitsComponent, PropertyDialogComponent],
+  entryComponents: [PropertyDialogComponent, UnitDialogComponent],
+  declarations: [PropertiesComponent, UnitsComponent, PropertyDialogComponent, UnitDialogComponent],
   providers: [
     PropertyService
   ]
