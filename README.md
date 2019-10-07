@@ -18,7 +18,7 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app 
 
 ## User Credentials
 
-Login With username: test@test.com and password: testtest
+Login with username: `test@test.com` and password: `testtest`
 
 ## Code scaffolding
 
