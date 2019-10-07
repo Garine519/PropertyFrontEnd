@@ -5,6 +5,7 @@ import { LoginService, User } from './loginService/login.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from "@angular/common";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -13,7 +14,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[SharedModule, HttpClientTestingModule, RouterTestingModule],
+      imports:[SharedModule, HttpClientTestingModule, RouterTestingModule, BrowserAnimationsModule],
       declarations: [ LoginComponent ],
       providers: [LoginService]
     })

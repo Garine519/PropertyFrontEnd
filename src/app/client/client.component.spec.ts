@@ -5,6 +5,7 @@ import { SharedModule } from '../shared.module';
 import { LoginService } from '../login/loginService/login.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ClientComponent', () => {
   let component: ClientComponent;
@@ -12,7 +13,7 @@ describe('ClientComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, RouterTestingModule, HttpClientTestingModule],
+      imports: [SharedModule, RouterTestingModule, HttpClientTestingModule, BrowserAnimationsModule],
       declarations: [ClientComponent],
       providers: [LoginService]
     })

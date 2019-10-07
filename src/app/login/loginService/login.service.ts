@@ -33,11 +33,11 @@ export class LoginService {
     this.removeUserInStorage();
   }
 
-  private setUserInStorage(user: User) {
+  setUserInStorage(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  private removeUserInStorage() {
+  removeUserInStorage() {
     localStorage.removeItem('user');
   }
 }

@@ -28,6 +28,9 @@
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let property">
+            <button mat-icon-button (click)="delete(property)">
+              <mat-icon aria-hidden="false">delete</mat-icon>
+            </button>
             <button mat-icon-button (click)="editProperty(property)">
               <mat-icon aria-hidden="false">edit</mat-icon>
             </button>

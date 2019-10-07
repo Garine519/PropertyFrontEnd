@@ -8,30 +8,8 @@
   <mat-form-field>
     <input matInput placeholder="Property Address" [(ngModel)]="property.address">
   </mat-form-field>
-
-  <h4>Units</h4>
-  <div >
-  <div fxLayout="row" *ngFor="let unit of property.units">
-      <mat-form-field>
-        <input matInput type="number" placeholder="Unit Number" [(ngModel)]="unit.number">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput type="number" placeholder="Unit Floor" [(ngModel)]="unit.floor">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput type="number" placeholder="Unit Rent" [(ngModel)]="unit.rent">
-      </mat-form-field>
-
-      <div fxLayoutAlign="center center">
-          <mat-checkbox  [(ngModel)]="unit.vacant">Vacant?</mat-checkbox>
-      </div>
-    </div>
-    <a (click)='addUnit()'>Add</a>
-  </div>
 </div>
 <div mat-dialog-actions fxLayoutAlign="end end">
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="save()">Save</button>
+  <button mat-flat-button (click)="save()">Save</button>
 </div>

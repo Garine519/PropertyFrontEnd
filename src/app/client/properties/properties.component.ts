@@ -49,14 +49,24 @@ export class PropertiesComponent implements OnInit {
     });
   }
 
-  editProperty(property: Property): void {
+  editProperty(property: Property) {
     let dialogRef = this.dialog.open(PropertyDialogComponent, {
       width: '800px',
-      data: { property: property }
+      data: {property: property}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.propertyService.editProperty(result).subscribe((res: any) => {
+          this.refresh();
+        });
+      }
+    });
+  }
+
+  delete(property: Property): void {
+    this.propertyService.delete(property).subscribe((res: any) => {
+      this.refresh();
     });
   }
 }
@@ -66,17 +76,17 @@ export class PropertiesComponent implements OnInit {
   templateUrl: 'property-dialog.html',
 })
 export class PropertyDialogComponent {
-  public property = { name: '', address: '', units: [{ number: 1, floor: 1, rent: 1000, vacant: true }] };
+  public property = { name: '', address: '', units: [] };
   constructor(
     public dialogRef: MatDialogRef<PropertyDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) { 
+      if (data){
+        this.property = data.property;
+      }
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  addUnit() {
-    this.property.units.push({ number: 1, floor: 1, rent: 1000, vacant: true });
   }
 
   save() {

@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared.module';
 import { PropertyService } from '../properties/propertyService/property.service';
 import {RouterTestingModule} from "@angular/router/testing";
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('UnitsComponent', () => {
   let component: UnitsComponent;
@@ -12,7 +13,7 @@ describe('UnitsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, RouterTestingModule, HttpClientTestingModule],
+      imports: [SharedModule, RouterTestingModule, HttpClientTestingModule, BrowserAnimationsModule],
       declarations: [ UnitsComponent],
       providers: [PropertyService]
     })
