@@ -1,0 +1,16 @@
+.background {
+    background-image:url('../../assets/images/hero.jpg');
+    min-height: 100vh;
+    height:100vh;
+    padding: 18%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; 
+}
+
+html { 
+    height:100%;
+}
+body { 
+    min-height:100%;
+}
