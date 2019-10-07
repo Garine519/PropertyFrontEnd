@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../environments/environment';
 
 const PROPERTIES_PATH = `${environment.BASE_API_PATH}/api/properties`;
+const ADD_PROPERTY_PATH = `${environment.BASE_API_PATH}/api/property/create`;
 
 export interface Unit {
   number: string;
@@ -29,7 +30,7 @@ export class PropertyService {
   ) { }
 
   public getProperties(query: any = {}, params: { limit: number; offset: number } = { limit: 100, offset: 0 }): Observable<Property[]> {
-    const user =  JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     const token = user ? user.token : '';
     return this.http.post<Property[]>(PROPERTIES_PATH, query, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
@@ -37,6 +38,14 @@ export class PropertyService {
         limit: `${params.limit}`,
         offset: `${params.offset}`
       }
+    });
+  }
+
+  public addProperty(property: Property) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user ? user.token : '';
+    return this.http.post<Property[]>(ADD_PROPERTY_PATH, property, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     });
   }
 }

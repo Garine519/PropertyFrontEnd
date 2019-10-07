@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { PropertyService, Property, Unit } from './propertyService/property.service';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
@@ -12,16 +12,22 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 export class PropertiesComponent implements OnInit {
   properties: Property[] = [];
   displayedColumns = ['name', 'address', 'unit', 'actions'];
-  constructor(private propertyService: PropertyService, private router: Router, public dialog: MatDialog) {
+  constructor(private propertyService: PropertyService, private router: Router, private cdr: ChangeDetectorRef,
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
     this.loadProperties();
   }
 
   loadProperties() {
     this.propertyService.getProperties().subscribe(_properties => {
       this.properties = _properties;
+      this.cdr.detectChanges();
     });
   }
 
@@ -29,20 +35,24 @@ export class PropertiesComponent implements OnInit {
     this.router.navigate(["client/properties", propertyId, 'units']);
   }
 
-  newProperty(){
+  newProperty() {
     let dialogRef = this.dialog.open(PropertyDialogComponent, {
-      width: '250px',
+      width: '800px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.propertyService.addProperty(result).subscribe((res: any) => {
+          this.refresh();
+        });
+      }
     });
   }
 
   editProperty(property: Property): void {
     let dialogRef = this.dialog.open(PropertyDialogComponent, {
-      width: '250px',
-      data: { property: property}
+      width: '800px',
+      data: { property: property }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -56,13 +66,22 @@ export class PropertiesComponent implements OnInit {
   templateUrl: 'property-dialog.html',
 })
 export class PropertyDialogComponent {
-
+  public property = { name: '', address: '', units: [{ number: 1, floor: 1, rent: 1000, vacant: true }] };
   constructor(
     public dialogRef: MatDialogRef<PropertyDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  addUnit() {
+    this.property.units.push({ number: 1, floor: 1, rent: 1000, vacant: true });
+  }
+
+  save() {
+    console.log(this.property);
+    this.dialogRef.close(this.property);
   }
 
 }

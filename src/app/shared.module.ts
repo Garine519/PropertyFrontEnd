@@ -8,11 +8,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
   FormsModule,
+  MatCheckboxModule,
   ReactiveFormsModule,
   FlexLayoutModule,
   CommonModule,
@@ -42,6 +43,7 @@ import { CommonModule } from '@angular/common';
    MatDialogModule, 
    MatTableModule, 
    MatMenuModule,
+   MatCheckboxModule,
    MatIconModule,
    MatProgressSpinnerModule
    ],
