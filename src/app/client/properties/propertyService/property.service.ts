@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { APIConfig } from '../api.config';
+import { environment } from '../../../../environments/environment';
 
-const PROPERTIES_PATH = `${APIConfig.BASE_API_PATH}/api/properties`;
+const PROPERTIES_PATH = `${environment.BASE_API_PATH}/api/properties`;
 
 export interface Unit {
   number: string;
@@ -28,11 +28,11 @@ export class PropertyService {
     private http: HttpClient
   ) { }
 
-  public queryProperties(
-    query: any = {},
-    params: { limit: number; offset: number } = { limit: 10, offset: 0 }
-  ): Observable<Property[]> {
+  public getProperties(query: any = {}, params: { limit: number; offset: number } = { limit: 100, offset: 0 }): Observable<Property[]> {
+    const user =  JSON.parse(localStorage.getItem('user'));
+    const token = user ? user.token : '';
     return this.http.post<Property[]>(PROPERTIES_PATH, query, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
       params: {
         limit: `${params.limit}`,
         offset: `${params.offset}`

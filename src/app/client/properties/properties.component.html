@@ -1,0 +1,42 @@
+<div class="padding">
+  <mat-card>
+    <mat-card-title>
+      <div fxLayoutFill>
+        <div fxLayoutAlign="start start">My Properties</div>
+        <div fxLayoutAlign="end start">
+          <button mat-flat-button (click)="newProperty()">Add New Property</button>
+        </div>
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-table #table [dataSource]="properties">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let property"> {{property?.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="address">
+          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+          <mat-cell *matCellDef="let property"> {{property?.address}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="unit">
+          <mat-header-cell *matHeaderCellDef> Units </mat-header-cell>
+          <mat-cell *matCellDef="let property">
+            <button mat-flat-button (click)="listUnits(property._id)">See Units</button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let property">
+            <button mat-icon-button (click)="editProperty(property)">
+              <mat-icon aria-hidden="false">edit</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>

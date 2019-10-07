@@ -19,6 +19,9 @@ import { SharedModule } from './shared.module';
     AppRoutingModule,
     FlexLayoutModule
   ],
+  exports: [
+    SharedModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

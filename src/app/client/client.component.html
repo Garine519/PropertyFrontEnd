@@ -1,0 +1,9 @@
+<div class="background">
+  <div fxLayout="row" fxlayoutFill fxLayoutAlign="end end" style="padding:0.5%;background-color: #009688;color:white">
+    <button mat-button [matMenuTriggerFor]="menu">{{email}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item #logoutbtn class="menu-item menu-item-logout" (click)="logout()">Log out</button>
+    </mat-menu>
+  </div>
+  <router-outlet></router-outlet>
+</div>

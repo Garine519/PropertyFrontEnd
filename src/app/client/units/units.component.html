@@ -1,0 +1,25 @@
+<div class="padding">
+  <mat-card>
+    <mat-card-title>{{property}} Units</mat-card-title>
+    <mat-card-content>
+      <mat-table #table [dataSource]="units">
+        <ng-container matColumnDef="number">
+          <mat-header-cell *matHeaderCellDef> Number </mat-header-cell>
+          <mat-cell *matCellDef="let unit"> {{unit.number}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="floor">
+          <mat-header-cell *matHeaderCellDef> Floor </mat-header-cell>
+          <mat-cell *matCellDef="let unit"> {{unit.floor}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="rent">
+          <mat-header-cell *matHeaderCellDef> Rent </mat-header-cell>
+          <mat-cell *matCellDef="let unit">{{unit.rent}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="pagelength" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
