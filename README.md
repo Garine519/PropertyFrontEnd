@@ -18,7 +18,7 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app 
 
 ## User Credentials
 
-Login with username: `test@test.com` and password: `testtest`
+Login with username: `test@test.com` and password: `testtest` after running the unit tests by `npm test`
 
 ## Code scaffolding
 
