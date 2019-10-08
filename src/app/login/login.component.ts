@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
     if (this.userForm.valid) {
       this.loginService.login(this.userForm.value.email, this.userForm.value.password).subscribe((user: any) => {
         if (user.email){
-          this.loggedIn.emit(user);
           this.router.navigate(['client/properties']);
         }
       })

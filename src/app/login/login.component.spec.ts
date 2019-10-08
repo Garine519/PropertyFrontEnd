@@ -6,11 +6,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from "@angular/common";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from '../Guards/auth.guard';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let location: Location;
+  let loginService: LoginService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,6 +38,8 @@ describe('LoginComponent', () => {
   });
 
   it('submitting a form emits a user and redirect to properties page', () => {
+    loginService = TestBed.get(LoginService);
+
     expect(component.userForm.valid).toBeFalsy();
     component.userForm.controls['email'].setValue("test@test.com");
     component.userForm.controls['password'].setValue("testtest");
@@ -50,12 +54,10 @@ describe('LoginComponent', () => {
       user = value;
       expect(user.email).toBe("test@test.com");
       expect(user.password).toBe("testtest");
+      expect(loginService.authenticationState.value).toBe(true);
       expect(location.path()).toBe('/client/properties');
 
     });
-
-    // // Trigger the login function
-     component.login();
 
   });
 });
