@@ -66,7 +66,7 @@ export class PropertyService {
     const user = JSON.parse(localStorage.getItem('user'));
     const token = user ? user.token : '';
     const unitPath = ADD_UNIT_PATH.replace(':id', property_id);
-    return this.http.post<Property>(unitPath, {property_id: property_id, unit: unit}, {
+    return this.http.post<Property>(unitPath, {unit: unit}, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
     });
   }
